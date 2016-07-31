@@ -78,10 +78,7 @@ Basically for task 3, we divide the task into three states: Search, Pick and Pla
 \subsubsection{Treasure Detection}
 As the treasures have distinct color features compared to the ground, we firstly used a simple detection method to localize the treasure. 
 The inputs are 3D points $p_i$ from the Stereo sensor and the RGB image projection to the ground by the projection matrix computed using the known camera parameters. %We first apply 
-HSI color filter is applied to obtain to 3D point candidates of treasure from the point cloud data. Next we apply Euclidean clustering to the filtered point cloud $P_{hsi}$. Euclidean clustering technique can organize points into clusters with respect to the distance feature in 3D space. For $\forall p_i, p_j \in P_{hsi}$, clusters $O_i = \{p_i \in P_i\}$ and $O_j = \{p_j \in P_j\}$ are obtained by:
-\begin{equation}\label{eq3-1}
-min||p_i - p_j|| \geq d_{threhold} 
-\end{equation}
+HSI color filter is applied to obtain to 3D point candidates of treasure from the point cloud data. Next we apply Euclidean clustering to the filtered point cloud $P_{hsi}$. Euclidean clustering technique can organize points into clusters with respect to the distance feature in 3D space. 
 
 When we get all the clusters, we apply a simple tracker to every cluster center and as we continue to detect the same cluster over time space, the weight of the tracker is increased to boost the confidence of tracking. For clusters that are not always detected the confidence are slowly decreased and removed from the treasure candidates vector. The UAV will lock the cluster candidate when the weight is large enough and switch into the "Pick" mode to approach the treasure.
 
